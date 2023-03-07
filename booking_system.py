@@ -72,7 +72,9 @@ def load_data():
         # append i'th driver into our list of drivers
         # Convert datetime to string
         [time_hr, time_min] = parse_time(df.Start_Time[i])
-        day_formatted = map_day(df.Day[i])
+        
+        # use strip to remove whitespace around value (if included)
+        day_formatted = map_day(df.Day[i].strip())
         x = Robot_Driver(name = df.Name[i], robot_name = df.Robot_Name[i], robot_serial = df.Robot_Serial[i], email = df.Email[i], time_hr = time_hr, time_min = time_min, day = day_formatted, duration = df.Duration[i])
         drivers.append(x)
     return drivers
